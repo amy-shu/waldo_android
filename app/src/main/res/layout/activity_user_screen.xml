@@ -17,4 +17,37 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
+    <View android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:background="@drawable/description_rec"
+        android:id="@+id/des_rec"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change color"
+        android:id="@+id/button"
+        android:clickable="true"
+        android:onClick= "color_change"
+        android:layout_alignRight="@+id/des_rec"
+        android:layout_alignEnd="@+id/des_rec"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="sEjfleSKjflkESJflkSJELKFjELSKfjLSKEJFLKSJEFLKjSLEFKJSLEKJFLKSEJFLKSEJFLKJSELFKJSE:LFKJSEL:KFJLKSEJFLKSEJFLKESJFLKSEJFL:KSEJLFKJSEL:KFJSEL:KFJLSKEJFKLE:SJ"
+        android:id="@+id/textView4"
+        android:layout_above="@+id/button"
+        android:layout_alignTop="@+id/des_rec"
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView"
+        android:layout_alignRight="@+id/textView"
+        android:layout_alignEnd="@+id/textView" />
+
 </RelativeLayout>
