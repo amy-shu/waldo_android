@@ -1,7 +1,10 @@
 package com.example.amy.waldo;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.AsyncTask;
 import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBarActivity;
@@ -73,11 +76,16 @@ public class MainActivity extends ActionBarActivity {
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://2e664d7b.ngrok.com/login/");
 
+        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wInfo = wifiManager.getConnectionInfo();
+        String macAddress = wInfo.getMacAddress();
+
         try {
             // Add your data
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
             nameValuePairs.add(new BasicNameValuePair("name", name));
             nameValuePairs.add(new BasicNameValuePair("description", description));
+            nameValuePairs.add(new BasicNameValuePair("mac", macAddress));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             // Execute HTTP Post Request
@@ -86,11 +94,9 @@ public class MainActivity extends ActionBarActivity {
             String responseString = new BasicResponseHandler().handleResponse(response);
             return responseString;
         } catch (ClientProtocolException e) {
-            Toast.makeText(getApplicationContext(), "uhoh bad post",
-                    Toast.LENGTH_SHORT).show();
+            Log.e("UGH", "uhoh bad post");
         } catch (IOException e) {
-            Toast.makeText(getApplicationContext(), "uhoh bad post",
-                    Toast.LENGTH_SHORT).show();
+            Log.e("UGH", "uhoh bad post");
         }
         return null;
     }
