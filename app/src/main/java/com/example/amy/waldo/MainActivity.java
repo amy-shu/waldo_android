@@ -1,5 +1,6 @@
 package com.example.amy.waldo;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -44,6 +45,8 @@ public class MainActivity extends ActionBarActivity {
         String d = description.getText().toString();
         Toast.makeText(getApplicationContext(), n.concat(d),
                 Toast.LENGTH_SHORT).show();
+        Intent myIntent = new Intent(this, User_screen.class);
+        this.startActivity(myIntent);
     }
 
     public void postData() {
