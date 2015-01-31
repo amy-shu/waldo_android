@@ -89,6 +89,7 @@ public class User_screen extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+<<<<<<< HEAD
 //    public void color_tick() {
 //        if (up) {
 //            if (red < 245) {
@@ -157,6 +158,44 @@ public class User_screen extends ActionBarActivity {
             final int period = 1000; // repeat every 10 sec.
             final Timer timer = new Timer();
             timer.scheduleAtFixedRate(new TimerTask()
+=======
+    public void color_tick() {
+        if (up) {
+            if (red < 245) {
+                System.out.println("tick");
+                System.out.println(red);
+                ((GradientDrawable) circle.getBackground()).setColor(Color.argb(red, 255, 32, 64));
+                red += 10;
+            } else {
+                up = false;
+            }
+        } else {
+            if (red > 10) {
+                System.out.println("tock");
+                System.out.println(red);
+                ((GradientDrawable) circle.getBackground()).setColor(Color.argb(red, 255, 32, 64));
+                red -= 10;
+            } else {
+                up = true;
+            }
+        }
+    }
+    public void waldo_change(View view) {
+        Intent myIntent = new Intent(this, waldo_screen.class);
+        this.startActivity(myIntent);
+    }
+
+    public void color_change(View view) {
+        Toast.makeText(getApplicationContext(), "color changing",
+                Toast.LENGTH_SHORT).show();
+        //((GradientDrawable) circle.getBackground()).setColor(Color.argb(255, red, 0, 0));
+        int delay = 1000; // delay for 1 sec.
+        int period = 1000; // repeat every 10 sec.
+        Timer timer = new Timer();
+        timer.scheduleAtFixedRate(new TimerTask()
+        {
+            public void run()
+>>>>>>> 73dff57862260e64fc259d9226753d70bf35ad75
             {
                 public void run()
                 {
