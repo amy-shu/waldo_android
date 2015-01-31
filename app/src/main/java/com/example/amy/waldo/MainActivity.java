@@ -2,8 +2,11 @@ package com.example.amy.waldo;
 
 import android.app.ActionBar;
 import android.content.Intent;
+import android.os.AsyncTask;
+import android.provider.SyncStateContract;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,12 +24,14 @@ import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -44,31 +49,43 @@ public class MainActivity extends ActionBarActivity {
         login = (Button)findViewById(R.id.button1);
     }
 
-    public void login(View view) {
+    public void login(View view) throws ExecutionException, InterruptedException {
         String n = name.getText().toString();
         String d = description.getText().toString();
-        Toast.makeText(getApplicationContext(), n.concat(d),
+        postCredentials task = new postCredentials();
+        String id = task.execute(n, d).get();
+        Toast.makeText(getApplicationContext(),id ,
                 Toast.LENGTH_SHORT).show();
         Intent myIntent = new Intent(this, User_screen.class);
         this.startActivity(myIntent);
         finish();
     }
 
-    public void postData() {
+    public class postCredentials extends AsyncTask<String, Void, String> {
+
+        @Override
+        protected String doInBackground(String... params) {
+            return postData(params[0], params[1]);
+        }
+    }
+
+    public String postData(String name, String description) {
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
-        HttpPost httppost = new HttpPost("http://www.yoursite.com/script.php");
+        HttpPost httppost = new HttpPost("http://2e664d7b.ngrok.com/login/");
 
         try {
             // Add your data
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("id", "12345"));
-            nameValuePairs.add(new BasicNameValuePair("stringdata", "AndDev is Cool!"));
+            nameValuePairs.add(new BasicNameValuePair("name", name));
+            nameValuePairs.add(new BasicNameValuePair("description", description));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             // Execute HTTP Post Request
             HttpResponse response = httpclient.execute(httppost);
 
+            String responseString = new BasicResponseHandler().handleResponse(response);
+            return responseString;
         } catch (ClientProtocolException e) {
             Toast.makeText(getApplicationContext(), "uhoh bad post",
                     Toast.LENGTH_SHORT).show();
@@ -76,6 +93,7 @@ public class MainActivity extends ActionBarActivity {
             Toast.makeText(getApplicationContext(), "uhoh bad post",
                     Toast.LENGTH_SHORT).show();
         }
+        return null;
     }
 
     @Override
