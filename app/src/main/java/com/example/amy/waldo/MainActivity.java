@@ -54,9 +54,8 @@ public class MainActivity extends ActionBarActivity {
         String d = description.getText().toString();
         postCredentials task = new postCredentials();
         String id = task.execute(n, d).get();
-        Toast.makeText(getApplicationContext(),id ,
-                Toast.LENGTH_SHORT).show();
         Intent myIntent = new Intent(this, User_screen.class);
+        myIntent.putExtra("USER_ID", id);
         this.startActivity(myIntent);
         finish();
     }
