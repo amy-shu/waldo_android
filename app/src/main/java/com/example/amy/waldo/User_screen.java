@@ -92,8 +92,12 @@ public class User_screen extends ActionBarActivity {
                 up = true;
             }
         }
-
     }
+    public void waldo_change(View view) {
+        Intent myIntent = new Intent(this, waldo_screen.class);
+        this.startActivity(myIntent);
+    }
+
     public void color_change(View view) {
         Toast.makeText(getApplicationContext(), "color changing",
                 Toast.LENGTH_SHORT).show();
