@@ -2,10 +2,12 @@ package com.example.amy.waldo;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 
 public class User_screen extends ActionBarActivity {
@@ -29,6 +31,10 @@ public class User_screen extends ActionBarActivity {
                 })
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
+        Intent intent = getIntent();
+        String id = intent.getStringExtra("USER_ID");
+        Toast.makeText(getApplicationContext(), id,
+                Toast.LENGTH_SHORT).show();
     }
 
 
