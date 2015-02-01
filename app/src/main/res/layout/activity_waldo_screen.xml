@@ -17,6 +17,16 @@
         android:layout_marginLeft="290dp"
         />
 
+    <ImageButton
+        android:layout_width="300dp"
+        android:layout_height="150dp"
+        android:src="@drawable/found_button"
+        android:id="@+id/found_button"
+        android:layout_marginTop="170dp"
+        android:layout_centerHorizontal="true"
+        android:onClick="found_me"
+        />
+
     <View android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="@drawable/waldo_face"
