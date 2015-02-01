@@ -95,18 +95,21 @@ public class waldo_screen extends ActionBarActivity {
 
         @Override
         protected String doInBackground(String... params) {
-            return postData(params[0]);
+            return changeData(params[0]);
         }
     }
 
-    public String postData(String bool) {
+    public class quit extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            return changeData(params[0]);
+        }
+    }
+
+    public String changeData(String bool) {
         // Create a new HttpClient and Post Header
         HttpClient httpclient = new DefaultHttpClient();
         HttpPost httppost = new HttpPost("http://2e664d7b.ngrok.com/change_waldo/");
-
-        WifiManager wifiManager = (WifiManager) getSystemService(Context.WIFI_SERVICE);
-        WifiInfo wInfo = wifiManager.getConnectionInfo();
-        String macAddress = wInfo.getMacAddress();
 
         try {
             // Add your data
@@ -195,20 +198,10 @@ public class waldo_screen extends ActionBarActivity {
 
         @Override
         protected Void doInBackground(final String... params) {
-            final int delay = 1000; // delay for 1 sec.
-            final int period = 1000; // repeat every 10 sec.
-            final Timer timer = new Timer();
-            timer.scheduleAtFixedRate(new TimerTask()
-            {
-                public void run()
-                {
-                    String success = postDescription(params[0]);
-                    if (!success.equals("Success.")) {
-                        Log.e("ERROR", "BAD POST");
-                    }
-                }
-            }, delay, period);
-
+            String success = postDescription(params[0]);
+            if (!success.equals("Success.")) {
+                Log.e("ERROR", "BAD POST");
+            }
             return null;
         }
 
@@ -264,11 +257,13 @@ public class waldo_screen extends ActionBarActivity {
         if(currentTime - lastPress > 5000) {
             Toast. makeText(getBaseContext(), "Press again to leave", Toast.LENGTH_LONG).show();
             lastPress = currentTime;
-        }else {
-            //finish();
+        } else {
             Intent myIntent = new Intent(this, MainActivity.class);
-           // myIntent.putExtra("USER_ID", id);
             this.startActivity(myIntent);
+
+            quit task = new quit();
+            task.execute("false");
+
             finish();
         }
     }
