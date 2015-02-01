@@ -26,6 +26,16 @@
         android:layout_centerHorizontal="true"
         android:onClick="found_me"
         />
+    <ImageButton
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/exit_button1"
+        android:id="@+id/exit_button"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="295dp"
+        android:background="@android:color/transparent"
+
+        />
 
     <View android:layout_width="100dp"
         android:layout_height="100dp"
