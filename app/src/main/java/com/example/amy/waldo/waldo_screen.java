@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -209,11 +210,20 @@ public class waldo_screen extends ActionBarActivity {
     public void exit_click(){
         long currentTime = System.currentTimeMillis();
         if(currentTime - lastPress > 5000) {
-            Toast. makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
+            Toast. makeText(getBaseContext(), "Press again to leave", Toast.LENGTH_LONG).show();
             lastPress = currentTime;
         }else {
             //finish();
-            System.exit(0);
+            Intent myIntent = new Intent(this, MainActivity.class);
+           // myIntent.putExtra("USER_ID", id);
+            this.startActivity(myIntent);
+            finish();
         }
     }
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("NOPE, CHUCK TESTA!");
+    }
+
 }
