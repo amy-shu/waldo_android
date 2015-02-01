@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 
 public class waldo_screen extends ActionBarActivity {
@@ -35,5 +36,9 @@ public class waldo_screen extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    public void found_me(View view){
+        System.out.println("found button pressed");
     }
 }

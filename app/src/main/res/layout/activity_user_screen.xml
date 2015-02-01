@@ -14,7 +14,7 @@
         android:layout_height="200dp"
         android:background="@drawable/circle"
         android:id="@+id/textView"
-        android:layout_centerVertical="true"
+        android:layout_below="@+id/waldo_dog"
         android:layout_centerHorizontal="true" />
 
     <View android:layout_width="300dp"
@@ -22,8 +22,11 @@
         android:background="@drawable/description_rec"
         android:id="@+id/des_rec"
 
-        android:layout_above="@+id/button"
-        android:layout_centerHorizontal="true" />
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="25dp"
+        />
+
     <ImageButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -51,6 +54,14 @@
 
 
         />
+    <View android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:background="@drawable/waldo_face"
+        android:id="@+id/waldo_face"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="160dp"
+        />
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -79,13 +90,12 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="sEjfleSKjflkESJflkSJELKFjELSKfjLSKEJFLKSJEFLKjSLEFKJSLEKJFLKSEJFLKSEJFLKJSELFKJSE:LFKJSEL:KFJLKSEJFLKSEJFLKESJFLKSEJFL:KSEJLFKJSEL:KFJSEL:KFJLSKEJFKLE:SJ"
         android:id="@+id/textView4"
-        android:layout_above="@+id/button"
         android:layout_alignTop="@+id/des_rec"
         android:layout_alignLeft="@+id/textView"
         android:layout_alignStart="@+id/textView"
         android:layout_alignRight="@+id/textView"
         android:layout_alignEnd="@+id/textView"
         android:textColor="#FFFFFF"
-        />
+        android:layout_alignBottom="@+id/des_rec" />
 
 </RelativeLayout>
