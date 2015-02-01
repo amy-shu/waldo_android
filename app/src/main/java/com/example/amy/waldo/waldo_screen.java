@@ -258,11 +258,11 @@ public class waldo_screen extends ActionBarActivity {
             Toast. makeText(getBaseContext(), "Press again to leave", Toast.LENGTH_LONG).show();
             lastPress = currentTime;
         } else {
-            Intent myIntent = new Intent(this, MainActivity.class);
-            this.startActivity(myIntent);
-
             quit task = new quit();
             task.execute("false");
+
+            Intent myIntent = new Intent(this, MainActivity.class);
+            this.startActivity(myIntent);
 
             finish();
         }

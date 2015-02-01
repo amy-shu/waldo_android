@@ -127,9 +127,6 @@ public class User_screen extends ActionBarActivity {
                         e.printStackTrace();
                     }
 
-                    //!!!!!!!!!!!!
-                    isWaldo = true;
-
                     if (isWaldo) {
                         timer.cancel();
                         timer.purge();
@@ -188,6 +185,39 @@ public class User_screen extends ActionBarActivity {
         }
         return null;
     }
+
+    public String changeData(String bool) {
+        // Create a new HttpClient and Post Header
+        HttpClient httpclient = new DefaultHttpClient();
+        HttpPost httppost = new HttpPost("http://2e664d7b.ngrok.com/change_waldo/");
+
+        try {
+            // Add your data
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(3);
+            nameValuePairs.add(new BasicNameValuePair("leave_game", bool));
+            httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+            // Execute HTTP Post Request
+            HttpResponse response = httpclient.execute(httppost);
+
+            String responseString = new BasicResponseHandler().handleResponse(response);
+            return responseString;
+        } catch (ClientProtocolException e) {
+            Log.e("UGH", "uhoh bad post");
+        } catch (IOException e) {
+            Log.e("UGH", "uhoh bad post");
+        }
+        return null;
+    }
+
+
+    public class quit extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... params) {
+            return changeData(params[0]);
+        }
+    }
+
     long lastPress;
     public void exit_click(View view){
         long currentTime = System.currentTimeMillis();
@@ -195,8 +225,9 @@ public class User_screen extends ActionBarActivity {
             Toast. makeText(getBaseContext(), "Press again to leave", Toast.LENGTH_LONG).show();
             lastPress = currentTime;
         }else {
+            quit task = new quit();
+            task.execute("false");
             Intent myIntent = new Intent(this, MainActivity.class);
-            // myIntent.putExtra("USER_ID", id);
             this.startActivity(myIntent);
             finish();
         }
@@ -205,8 +236,5 @@ public class User_screen extends ActionBarActivity {
     public void onBackPressed() {
        System.out.println("NOPE, CHUCK TESTA!");
     }
-
-
-
 
 }
