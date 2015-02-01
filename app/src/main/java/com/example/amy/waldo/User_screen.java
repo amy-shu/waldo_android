@@ -126,7 +126,7 @@ public class User_screen extends ActionBarActivity {
                         jsonObj = new JSONObject();
                         e.printStackTrace();
                     }
-
+                    System.out.println(dis);
                     if (isWaldo) {
                         timer.cancel();
                         timer.purge();
