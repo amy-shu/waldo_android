@@ -172,7 +172,7 @@ public class User_screen extends ActionBarActivity {
             System.out.println(id);
 
             List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("uid", "2"));
+            nameValuePairs.add(new BasicNameValuePair("uid", id));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             HttpResponse response = httpclient.execute(httppost);
@@ -185,11 +185,19 @@ public class User_screen extends ActionBarActivity {
         }
         return null;
     }
-
-    public void exit_click(View view){}{
-        System.out.println("exited1");
-        finish();
-        System.exit(0);
+    long lastPress=0;
+    public void exit_click(){
+        long currentTime = System.currentTimeMillis();
+        if(currentTime - lastPress > 5000) {
+            Toast. makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
+            lastPress = currentTime;
+        }else {
+            finish();
+            System.exit(0);
+        }
     }
+
+
+
 
 }

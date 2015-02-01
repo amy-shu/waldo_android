@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 
 public class waldo_screen extends ActionBarActivity {
@@ -44,9 +45,16 @@ public class waldo_screen extends ActionBarActivity {
     public void setting_click(View view){
         System.out.println("setting pressed");
     }
-    public void exit_click(View view){}{
-        System.out.println("exited2");
-        finish();
-        System.exit(0);
+    long lastPress = 0;
+    public void exit_click(){
+        long currentTime = System.currentTimeMillis();
+        if(currentTime - lastPress > 5000) {
+            Toast. makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
+            lastPress = currentTime;
+        }else {
+            //finish();
+            System.exit(0);
+        }
     }
+
 }
