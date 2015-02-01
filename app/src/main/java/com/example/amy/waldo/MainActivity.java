@@ -147,4 +147,17 @@ public class MainActivity extends ActionBarActivity {
         }
         return ret;
     }
+
+    long lastPress;
+    @Override
+    public void onBackPressed() {
+        long currentTime = System.currentTimeMillis();
+        if(currentTime - lastPress > 5000){
+            Toast.makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
+            lastPress = currentTime;
+        }else{
+            super.onBackPressed();
+        }
+    }
+
 }
