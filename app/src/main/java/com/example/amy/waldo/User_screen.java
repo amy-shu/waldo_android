@@ -58,8 +58,6 @@ public class User_screen extends ActionBarActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("USER_ID");
-        Toast.makeText(getApplicationContext(), id,
-                Toast.LENGTH_SHORT).show();
         circle = (View)findViewById(R.id.textView);
         description = (TextView)findViewById(R.id.textView4);
         updateInfo update = new updateInfo(this);
@@ -129,6 +127,9 @@ public class User_screen extends ActionBarActivity {
                         e.printStackTrace();
                     }
 
+                    //!!!!!!!!!!!!
+                    isWaldo = true;
+
                     if (isWaldo) {
                         timer.cancel();
                         timer.purge();
@@ -141,6 +142,7 @@ public class User_screen extends ActionBarActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.cancel();
                                                 Intent myIntent = new Intent(mContext, waldo_screen.class);
+                                                myIntent.putExtra("USER_ID", id);
                                                 mContext.startActivity(myIntent);
                                             }
                                         }).create().show();
