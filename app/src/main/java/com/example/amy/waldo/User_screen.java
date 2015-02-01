@@ -132,6 +132,20 @@ public class User_screen extends ActionBarActivity {
                     if (isWaldo) {
                         timer.cancel();
                         timer.purge();
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+                                builder.setMessage("You are now Waldo!")
+                                        .setTitle("YAYYY")
+                                        .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+                                            public void onClick(DialogInterface dialog, int which) {
+                                                dialog.cancel();
+                                                Intent myIntent = new Intent(mContext, waldo_screen.class);
+                                                mContext.startActivity(myIntent);
+                                            }
+                                        }).create().show();
+                            }
+                        });
                     } else {
                         runOnUiThread(new Runnable() {
                             @Override
@@ -147,20 +161,6 @@ public class User_screen extends ActionBarActivity {
             return null;
         }
 
-        @Override
-        protected void onPostExecute(Void v) {
-            AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setMessage("You are now Waldo!")
-                    .setTitle("YAYYY.")
-                    .setNeutralButton("OK", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.cancel();
-                            Intent myIntent = new Intent(mContext, waldo_screen.class);
-                            mContext.startActivity(myIntent);
-                        }
-                    }).create().show();
-        }
-
     }
 
     public String postData() {
@@ -171,8 +171,8 @@ public class User_screen extends ActionBarActivity {
         try {
             System.out.println(id);
 
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
-            nameValuePairs.add(new BasicNameValuePair("uid", "2"));
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
+            nameValuePairs.add(new BasicNameValuePair("uid", id));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
 
             HttpResponse response = httpclient.execute(httppost);
