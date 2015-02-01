@@ -50,7 +50,12 @@
         android:layout_below="@+id/textView1"
         android:layout_alignLeft="@+id/editText2"
         android:layout_alignStart="@+id/editText2"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="20dp"
+        android:maxLength="35"
+        android:lines="1"
+        android:scrollHorizontally="true"
+        android:capitalize="words">
+
 
 
         <requestFocus />
@@ -77,7 +82,11 @@
         android:layout_below="@+id/editText1"
         android:layout_alignLeft="@+id/button1"
         android:layout_marginTop="20dp"
-        android:layout_alignStart="@+id/button1" />
+        android:layout_alignStart="@+id/button1"
+        android:maxLength="35"
+        android:lines="1"
+        android:scrollHorizontally="true"
+        />
 
 
     <ImageButton

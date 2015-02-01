@@ -58,6 +58,14 @@ public class MainActivity extends ActionBarActivity {
     public void login(View view) throws ExecutionException, InterruptedException {
         String n = name.getText().toString();
         String d = description.getText().toString();
+        if (n.length() == 0) {
+            Toast.makeText(getBaseContext(), "Please fill in a name", Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (d.length() == 0) {
+            Toast.makeText(getBaseContext(), "Please fill in a description", Toast.LENGTH_LONG).show();
+            return;
+        }
         postCredentials task = new postCredentials();
         String id = task.execute(n, d).get();
         Intent myIntent = new Intent(this, User_screen.class);

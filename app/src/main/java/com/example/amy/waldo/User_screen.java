@@ -58,8 +58,6 @@ public class User_screen extends ActionBarActivity {
 
         Intent intent = getIntent();
         id = intent.getStringExtra("USER_ID");
-        Toast.makeText(getApplicationContext(), id,
-                Toast.LENGTH_SHORT).show();
         circle = (View)findViewById(R.id.textView);
         description = (TextView)findViewById(R.id.textView4);
         updateInfo update = new updateInfo(this);
@@ -129,6 +127,9 @@ public class User_screen extends ActionBarActivity {
                         e.printStackTrace();
                     }
 
+                    //!!!!!!!!!!!!
+                    isWaldo = true;
+
                     if (isWaldo) {
                         timer.cancel();
                         timer.purge();
@@ -141,7 +142,9 @@ public class User_screen extends ActionBarActivity {
                                             public void onClick(DialogInterface dialog, int which) {
                                                 dialog.cancel();
                                                 Intent myIntent = new Intent(mContext, waldo_screen.class);
+                                                myIntent.putExtra("USER_ID", id);
                                                 mContext.startActivity(myIntent);
+                                                finish();
                                             }
                                         }).create().show();
                             }
@@ -185,16 +188,22 @@ public class User_screen extends ActionBarActivity {
         }
         return null;
     }
-    long lastPress=0;
-    public void exit_click(){
+    long lastPress;
+    public void exit_click(View view){
         long currentTime = System.currentTimeMillis();
         if(currentTime - lastPress > 5000) {
-            Toast. makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
+            Toast. makeText(getBaseContext(), "Press again to leave", Toast.LENGTH_LONG).show();
             lastPress = currentTime;
         }else {
+            Intent myIntent = new Intent(this, MainActivity.class);
+            // myIntent.putExtra("USER_ID", id);
+            this.startActivity(myIntent);
             finish();
-            System.exit(0);
         }
+    }
+    @Override
+    public void onBackPressed() {
+       System.out.println("NOPE, CHUCK TESTA!");
     }
 
 
