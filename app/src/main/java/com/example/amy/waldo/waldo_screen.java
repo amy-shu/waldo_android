@@ -259,7 +259,7 @@ public class waldo_screen extends ActionBarActivity {
     }
 
     long lastPress = 0;
-    public void exit_click(){
+    public void exit_click(View view){
         long currentTime = System.currentTimeMillis();
         if(currentTime - lastPress > 5000) {
             Toast. makeText(getBaseContext(), "Press again to leave", Toast.LENGTH_LONG).show();
