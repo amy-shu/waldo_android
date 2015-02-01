@@ -41,4 +41,12 @@ public class waldo_screen extends ActionBarActivity {
     public void found_me(View view){
         System.out.println("found button pressed");
     }
+    public void setting_click(View view){
+        System.out.println("setting pressed");
+    }
+    public void exit_click(View view){}{
+        System.out.println("exited2");
+        finish();
+        System.exit(0);
+    }
 }

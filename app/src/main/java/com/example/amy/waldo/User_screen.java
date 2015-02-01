@@ -186,4 +186,10 @@ public class User_screen extends ActionBarActivity {
         return null;
     }
 
+    public void exit_click(View view){}{
+        System.out.println("exited1");
+        finish();
+        System.exit(0);
+    }
+
 }

@@ -13,8 +13,9 @@
         android:src="@drawable/ic_launcher"
         android:background="@android:color/transparent"
         android:id="@+id/imageButton"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="60dp"
         android:layout_marginLeft="290dp"
+        android:onClick="setting_click"
         />
 
     <ImageButton
@@ -31,10 +32,10 @@
         android:layout_height="40dp"
         android:src="@drawable/exit_button1"
         android:id="@+id/exit_button"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="10dp"
         android:layout_marginLeft="295dp"
         android:background="@android:color/transparent"
-
+        android:onClick="exit_click"
         />
 
     <View android:layout_width="100dp"
