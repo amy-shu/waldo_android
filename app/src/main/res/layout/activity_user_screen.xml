@@ -66,17 +66,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Change color"
-        android:id="@+id/button"
-        android:clickable="true"
-        android:onClick= "color_change"
-        android:layout_alignRight="@+id/des_rec"
-        android:layout_alignEnd="@+id/des_rec"
-        android:layout_alignParentBottom="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Change color"
         android:id="@+id/button2"
         android:clickable="true"
         android:onClick= "waldo_change"

@@ -115,19 +115,19 @@ public class User_screen extends ActionBarActivity {
                 public void run()
                 {
                     String jsonStr = postData();
-//                    String jsonStr = "";
-                    System.out.println(jsonStr == null);
-                    System.out.println(jsonStr);
+                    JSONObject jsonObj;
                     Log.d("BOO", jsonStr);
-//                    try {
-//                        JSONObject jsonObj = new JSONObject(jsonStr);
-//                    } catch (JSONException e) {
-//                        e.printStackTrace();
-//                    }
-
-                    des = "Hello";
-                    dis = 2.3;
-                    isWaldo = true;
+                    try {
+                        jsonObj = new JSONObject(jsonStr);
+                        des = jsonObj.getString("description");
+                        String d = jsonObj.getString("distance");
+                        dis = Double.parseDouble(d);
+                        String w = jsonObj.getString("isWaldo");
+                        isWaldo = Boolean.valueOf(w);
+                    } catch (JSONException e) {
+                        jsonObj = new JSONObject();
+                        e.printStackTrace();
+                    }
 
                     if (isWaldo) {
                         timer.cancel();
@@ -150,11 +150,13 @@ public class User_screen extends ActionBarActivity {
         @Override
         protected void onPostExecute(Void v) {
             AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-            builder.setMessage("Boo")
-                    .setTitle("Error")
+            builder.setMessage("You are now Waldo!")
+                    .setTitle("YAYYY.")
                     .setNeutralButton("OK", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             dialog.cancel();
+                            Intent myIntent = new Intent(mContext, waldo_screen.class);
+                            mContext.startActivity(myIntent);
                         }
                     }).create().show();
         }
