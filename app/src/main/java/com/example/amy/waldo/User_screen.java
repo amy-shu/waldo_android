@@ -185,7 +185,7 @@ public class User_screen extends ActionBarActivity {
         }
         return null;
     }
-    long lastPress=0;
+    long lastPress;
     public void exit_click(){
         long currentTime = System.currentTimeMillis();
         if(currentTime - lastPress > 5000) {

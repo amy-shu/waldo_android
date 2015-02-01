@@ -45,7 +45,7 @@ public class waldo_screen extends ActionBarActivity {
     public void setting_click(View view){
         System.out.println("setting pressed");
     }
-    long lastPress = 0;
+    long lastPress;
     public void exit_click(){
         long currentTime = System.currentTimeMillis();
         if(currentTime - lastPress > 5000) {
