@@ -142,6 +142,7 @@ public class User_screen extends ActionBarActivity {
                                                 dialog.cancel();
                                                 Intent myIntent = new Intent(mContext, waldo_screen.class);
                                                 mContext.startActivity(myIntent);
+                                                finish();
                                             }
                                         }).create().show();
                             }
@@ -186,15 +187,21 @@ public class User_screen extends ActionBarActivity {
         return null;
     }
     long lastPress;
-    public void exit_click(){
+    public void exit_click(View view){
         long currentTime = System.currentTimeMillis();
         if(currentTime - lastPress > 5000) {
-            Toast. makeText(getBaseContext(), "Press back again to exit", Toast.LENGTH_LONG).show();
+            Toast. makeText(getBaseContext(), "Press again to leave", Toast.LENGTH_LONG).show();
             lastPress = currentTime;
         }else {
+            Intent myIntent = new Intent(this, MainActivity.class);
+            // myIntent.putExtra("USER_ID", id);
+            this.startActivity(myIntent);
             finish();
-            System.exit(0);
         }
+    }
+    @Override
+    public void onBackPressed() {
+       System.out.println("NOPE, CHUCK TESTA!");
     }
 
 
