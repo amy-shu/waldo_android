@@ -167,12 +167,13 @@ public class User_screen extends ActionBarActivity {
         HttpPost httppost = new HttpPost("http://2e664d7b.ngrok.com/user_status/");
 
         try {
-            // Execute HTTP Post Request
-            HttpResponse response = httpclient.execute(httppost);
+            System.out.println(id);
 
-            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(1);
-            nameValuePairs.add(new BasicNameValuePair("uid", id));
+            List<NameValuePair> nameValuePairs = new ArrayList<NameValuePair>(2);
+            nameValuePairs.add(new BasicNameValuePair("uid", "2"));
             httppost.setEntity(new UrlEncodedFormEntity(nameValuePairs));
+
+            HttpResponse response = httpclient.execute(httppost);
 
             return new BasicResponseHandler().handleResponse(response);
         } catch (ClientProtocolException e) {
